@@ -1,8 +1,18 @@
-RepData_PA1
-===========
+---
+title: "PA1_template"
+output:
+        html_document:
+                keep_md: true
+---
 
 *Marc Durbin*  
 *November 15, 2015*
+
+Prepare R for knitr
+```{r}
+library(knitr)
+opts_chunk$set(echo = TRUE, results = 'hold')
+```
 
 Read in the dataset and process the data:
 
