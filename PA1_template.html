@@ -64,6 +64,9 @@ img {
 <div id="repdata_pa1" class="section level1">
 <h1>RepData_PA1</h1>
 <p><em>Marc Durbin</em><br /><em>November 15, 2015</em></p>
+<p>Prepare R for knitr</p>
+<pre class="r"><code>library(knitr)
+opts_chunk$set(echo = TRUE, results = 'hold')</code></pre>
 <p>Read in the dataset and process the data:</p>
 <pre class="r"><code>if(!file.exists(&quot;./data&quot;)){dir.create(&quot;./data&quot;)}
 
@@ -73,9 +76,9 @@ download.file(fileUrl, destfile = &quot;./data/activity.zip&quot;, method = &quo
 unzip(zipfile=&quot;./data/activity.zip&quot;, exdir = &quot;./data&quot;)
 
 # get file type
-list.files(&quot;./data&quot;)</code></pre>
-<pre><code>## [1] &quot;activity.csv&quot; &quot;activity.zip&quot;</code></pre>
-<pre class="r"><code># read csv file into R and create dataframe
+list.files(&quot;./data&quot;)
+
+# read csv file into R and create dataframe
 data &lt;- read.csv(&quot;./data/activity.csv&quot;)
 
 # convert classes
@@ -84,7 +87,8 @@ data$interval &lt;- as.factor(data$interval)
 
 # inspect raw data
 summary(data)</code></pre>
-<pre><code>##      steps             date               interval    
+<pre><code>## [1] &quot;activity.csv&quot; &quot;activity.zip&quot;
+##      steps             date               interval    
 ##  Min.   :  0.00   Min.   :2012-10-01   0      :   61  
 ##  1st Qu.:  0.00   1st Qu.:2012-10-16   5      :   61  
 ##  Median :  0.00   Median :2012-10-31   10     :   61  
@@ -157,10 +161,10 @@ data_fill &lt;- data.frame(
         date = data$date,  
         interval = data$interval)</code></pre>
 <p>Check first 10 observations in “steps” column, before and after:</p>
-<pre class="r"><code>data[1:10,1]</code></pre>
-<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA</code></pre>
-<pre class="r"><code>data_fill[1:10,1]</code></pre>
-<pre><code>##  [1] 1.7169811 0.3396226 0.1320755 0.1509434 0.0754717 2.0943396 0.5283019
+<pre class="r"><code>data[1:10,1]
+data_fill[1:10,1]</code></pre>
+<pre><code>##  [1] NA NA NA NA NA NA NA NA NA NA
+##  [1] 1.7169811 0.3396226 0.1320755 0.1509434 0.0754717 2.0943396 0.5283019
 ##  [8] 0.8679245 0.0000000 1.4716981</code></pre>
 <p>Confirm non-existence of NAs:</p>
 <pre class="r"><code>sum(is.na(data_fill$steps))</code></pre>
